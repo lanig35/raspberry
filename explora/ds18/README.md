@@ -7,5 +7,5 @@ Ajouter les modules suivants dans _/etc/modules_:
 Ajouter la ligne suivante dans _/boot/config.txt_
 * dtoverlay=w1-gpio
 ## Récupération température
-cd /sys/bus/w1/devices/28-xxxx
+cd /sys/bus/w1/devices/28-xxxx  
 cat temperature (ou cat w1_slave) ==> A diviser par 1000
