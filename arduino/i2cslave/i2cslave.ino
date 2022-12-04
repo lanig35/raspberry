@@ -1,4 +1,7 @@
 #include <Wire.h>
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd (12, 11, 5, 4, 3, 2);
 
 #define DEVICE_ID 0x10
 
@@ -36,6 +39,9 @@ void sendSensor (int valeur) {
 void setup() {
     Serial.begin (9600);
     pinMode (LED_BUILTIN, OUTPUT);
+    lcd.begin (16, 2);
+    lcd.setCursor (0, 0);
+    lcd.print ("Informations:");
 
     Wire.begin (DEVICE_ID);
     Wire.onReceive (reception);
@@ -71,6 +77,11 @@ void loop() {
         Serial.print ("a:"); Serial.print (temp_moyenne);
         Serial.print ("-s:"); Serial.print (capteur);
         Serial.print ("-t:"); Serial.println (temperature);
+
+        lcd.setCursor (0,1);
+        lcd.print ("t: "); 
+        lcd.setCursor (4,1);
+        lcd.print (temperature); 
     }
 
     if ((current_time - lum_prev_time) >= LUM_INTERVAL) {
